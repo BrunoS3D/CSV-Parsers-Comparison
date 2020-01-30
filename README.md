@@ -6,26 +6,26 @@
 
 In the old test method, the csv structure was passed as a string to the converters and the time that elapsed from that conversion was used for comparison:
 
-| module                 | execution time (10 rows) | execution time (1000 rows) |
-| ---------------------- | ------------------------ | -------------------------- |
-| csvtojsonV1.js         | 46.8337 ms               | 77.1661989 ms              |
-| csvtojsonV2.js         | 9.934 ms                 | 24.36389 ms                |
-| papaparse.js           | 2.5822 ms                | 8.2563 ms                  |
-| convert-csv-to-json.js | 0.58229 ms               | 3.556901 ms                |
-| csv-parser.js          | 8.917701 ms              | 35.272601 ms               |
-| csv-parse.js           | 13.1939 ms               | 74.1141 ms                 |
-| fast-csv.js            | 12.8577 ms               | 58.502801 ms               |
+| module                 | exec time (10 rows) | exec time (1000 rows) |
+| ---------------------- | ------------------- | --------------------- |
+| csvtojsonV1.js         | 46.8337 ms          | 77.1661989 ms         |
+| csvtojsonV2.js         | 9.934 ms            | 24.36389 ms           |
+| papaparse.js           | 2.5822 ms           | 8.2563 ms             |
+| convert-csv-to-json.js | 0.58229 ms          | 3.556901 ms           |
+| csv-parser.js          | 8.917701 ms         | 35.272601 ms          |
+| csv-parse.js           | 13.1939 ms          | 74.1141 ms            |
+| fast-csv.js            | 12.8577 ms          | 58.502801 ms          |
 
 ### Current Test Method (CSV File Stream Reader)
 
 In the new method, use a `createReadStream` to read a file then it is connected to the converter using the `pipe` function, the time it takes from connecting the pipe to the `end` event is used for the comparison.
 
-| module        | execution time (10 rows) | execution time (1k rows) | execution time (10k rows) | execution time (100k rows) |
-| ------------- | ------------------------ | ------------------------ | ------------------------- | -------------------------- |
-| papaparse.js  | 10.8862 ms               | 22.5746 ms               | 81.1833 ms                | 337.1437 ms                |
-| csv-parser.js | 9.74559 ms               | 51.86 ms                 | 111.473 ms                | 524.9644 ms                |
-| csv-parse.js  | 13.7337 ms               | 128.0882 ms              | 202.3191 ms               | 848.5843 ms                |
-| fast-csv.js   | 12.9665 ms               | 57.5728 ms               | 219.8584 ms               | 1 s 390.5334 ms            |
+| module        | exec time (10 rows) | exec time (1k rows) | exec time (10k rows) | exec time (100k rows) |
+| ------------- | ------------------- | ------------------- | -------------------- | --------------------- |
+| papaparse.js  | 10.8862 ms          | 22.5746 ms          | 81.1833 ms           | 337.1437 ms           |
+| csv-parser.js | 9.74559 ms          | 51.86 ms            | 111.473 ms           | 524.9644 ms           |
+| csv-parse.js  | 13.7337 ms          | 128.0882 ms         | 202.3191 ms          | 848.5843 ms           |
+| fast-csv.js   | 12.9665 ms          | 57.5728 ms          | 219.8584 ms          | 1 s 390.5334 ms       |
 
 > Obs: _Some packages have not supported or demonstrated some type of bug and have been removed._
 
