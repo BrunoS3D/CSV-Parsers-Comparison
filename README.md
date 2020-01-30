@@ -2,14 +2,15 @@
 
 🔥 NODE.JS - Comparative analysis of csv file readers and converters.
 
-| module                 | execution time        |
-| ---------------------- | --------------------- |
-| csvtojsonV1.js         | 46.8337 ms            |
-| csvtojsonV2.js         | 9.934 ms              |
-| papaparse.js           | 2.5822 ms             |
-| convert-csv-to-json.js | 0.5822999999999999 ms |
-| csv-parser.js          | 8.917701 ms           |
-| csv-parse.js           | 13.1939 ms            |
+| module                 | execution time        | rows                  |
+| ---------------------- | --------------------- | --------------------- |
+| csvtojsonV1.js         | 46.8337 ms            | 46.8337 ms            |
+| csvtojsonV2.js         | 9.934 ms              | 9.934 ms              |
+| papaparse.js           | 2.5822 ms             | 2.5822 ms             |
+| convert-csv-to-json.js | 0.5822999999999999 ms | 0.5822999999999999 ms |
+| csv-parser.js          | 8.917701 ms           | 8.917701 ms           |
+| csv-parse.js           | 13.1939 ms            | 13.1939 ms            |
+| fast-csv.js            | 12.8577 ms            | 12.8577 ms            |
 
 ## Modules
 
