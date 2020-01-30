@@ -1,6 +1,6 @@
-# CSV-Readers-Comparison
+# CSV-Parsers-Comparison
 
-🔥 NODE.JS - Comparative analysis of csv file readers and converters.
+🔥 NODE.JS - Comparative analysis of csv converters.
 
 | module                 | execution time        | rows                  |
 | ---------------------- | --------------------- | --------------------- |
