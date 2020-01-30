@@ -8,6 +8,7 @@
 | csvtojsonV2.js         | 9.934 ms              |
 | papaparse.js           | 2.5822 ms             |
 | convert-csv-to-json.js | 0.5822999999999999 ms |
+| csv-parser.js          | 10.1214 ms            |
 
 ## Modules
 
