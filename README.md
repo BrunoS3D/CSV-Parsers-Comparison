@@ -9,20 +9,6 @@
 | papaparse.js           | 2.5822 ms             |
 | convert-csv-to-json.js | 0.5822999999999999 ms |
 
-## CLI
-
-It is possible to pass arguments to the analyzer use the `--help` or `-h` flag for more details:
-
-```console
-node index.js --help
-```
-
-A very useful and important flag is the `--module` or just `-m`, it serves and is used to test each module individually:
-
-```console
-node index.js -m papaparse
-```
-
 ## Modules
 
 The comparator consists of modules.
@@ -36,6 +22,20 @@ module.exports = {
         stopCallback(/*result*/);
     }
 };
+```
+
+## CLI
+
+It is possible to pass arguments to the analyzer use the `--help` or `-h` flag for more details:
+
+```console
+node index.js --help
+```
+
+A very useful and important flag is the `--module` or just `-m`, it serves and is used to test each module individually:
+
+```console
+node index.js -m papaparse
 ```
 
 ## Test Data
@@ -55,3 +55,19 @@ The tests were based on the [sample-data.csv](./sample-data.csv) file which main
 | 5e327d46931914f68245cbd1 | 20  | Swanson Lopez     | male   | swansonlopez@quarx.com     | +55 (977) 557-2674 |
 | 5e327d46c18553d99a42bfea | 25  | Christian Shaffer | female | christianshaffer@quarx.com | +55 (836) 589-3118 |
 |                          |
+
+For each module tested the result obtained by converting the csv must be equal to the following structure:
+
+```js
+[
+    {
+        _id: "5e327d46d2bced0625350c64",
+        age: "20",
+        name: "Kimberley Kinney",
+        gender: "female",
+        email: "kimberleykinney@quarx.com",
+        phone: "+55 (923) 451-3229"
+    }
+    // ...
+];
+```
