@@ -20,12 +20,12 @@ In the old test method, the csv structure was passed as a string to the converte
 
 In the new method, use a `createReadStream` to read a file then it is connected to the converter using the `pipe` function, the time it takes from connecting the pipe to the `end` event is used for the comparison.
 
-| module        | execution time (10 rows) | execution time (1k rows) | execution time (10k rows) |
-| ------------- | ------------------------ | ------------------------ | ------------------------- |
-| papaparse.js  | 10.886201 ms             | 22.5746 ms               | 81.1833 ms                |
-| csv-parser.js | 9.745599 ms              | 51.86 ms                 | 111.473 ms                |
-| csv-parse.js  | 13.73379 ms              | 128.088201 ms            | 202.3191 ms               |
-| fast-csv.js   | 12.9665 ms               | 57.5728 ms               | 219.8584 ms               |
+| module        | execution time (10 rows) | execution time (1k rows) | execution time (10k rows) | execution time (100k rows) |
+| ------------- | ------------------------ | ------------------------ | ------------------------- | -------------------------- |
+| papaparse.js  | 10.8862 ms               | 22.5746 ms               | 81.1833 ms                | 337.1437 ms                |
+| csv-parser.js | 9.74559 ms               | 51.86 ms                 | 111.473 ms                | 524.9644 ms                |
+| csv-parse.js  | 13.7337 ms               | 128.0882 ms              | 202.3191 ms               | 848.5843 ms                |
+| fast-csv.js   | 12.9665 ms               | 57.5728 ms               | 219.8584 ms               | 1 s 390.5334 ms            |
 
 > Obs: _Some packages have not supported or demonstrated some type of bug and have been removed._
 
