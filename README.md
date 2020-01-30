@@ -2,15 +2,15 @@
 
 🔥 NODE.JS - Comparative analysis of csv converters.
 
-| module                 | execution time        | rows                  |
-| ---------------------- | --------------------- | --------------------- |
-| csvtojsonV1.js         | 46.8337 ms            | 46.8337 ms            |
-| csvtojsonV2.js         | 9.934 ms              | 9.934 ms              |
-| papaparse.js           | 2.5822 ms             | 2.5822 ms             |
-| convert-csv-to-json.js | 0.5822999999999999 ms | 0.5822999999999999 ms |
-| csv-parser.js          | 8.917701 ms           | 8.917701 ms           |
-| csv-parse.js           | 13.1939 ms            | 13.1939 ms            |
-| fast-csv.js            | 12.8577 ms            | 12.8577 ms            |
+| module                 | execution time (10 rows) | execution time (1000 rows) |
+| ---------------------- | ------------------------ | -------------------------- |
+| csvtojsonV1.js         | 46.8337 ms               | 77.1661989 ms              |
+| csvtojsonV2.js         | 9.934 ms                 | 24.36389 ms                |
+| papaparse.js           | 2.5822 ms                | 8.2563 ms                  |
+| convert-csv-to-json.js | 0.58229 ms               | 3.556901 ms                |
+| csv-parser.js          | 8.917701 ms              | 35.272601 ms               |
+| csv-parse.js           | 13.1939 ms               | 74.1141 ms                 |
+| fast-csv.js            | 12.8577 ms               | 58.502801 ms               |
 
 ## Modules
 
@@ -41,23 +41,26 @@ A very useful and important flag is the `--module` or just `-m`, it serves and i
 node index.js -m papaparse
 ```
 
+It is still possible to select an `input` file to perform the conversion and `output` path to save the result:
+
+```console
+node index.js -m fast-csv -i ./big-data.csv -d
+
+# or
+
+node index.js -m fast-csv -i ./big-data.csv -o ./output.json
+```
+
 ## Test Data
 
-The tests were based on the [sample-data.csv](./sample-data.csv) file which maintains the following structure:
+The tests were based on the [sample-data.csv](./sample-data.csv) and [big-data.csv](./big-data.csv) file which maintains the following structure:
 
-| \_id                     | age | name              | gender | email                      | phone              |
-| ------------------------ | --- | ----------------- | ------ | -------------------------- | ------------------ |
-| 5e327d46d2bced0625350c64 | 20  | Kimberley Kinney  | female | kimberleykinney@quarx.com  | +55 (923) 451-3229 |
-| 5e327d4652112a31ca1cb009 | 25  | Frieda Roth       | female | friedaroth@quarx.com       | +55 (928) 580-3096 |
-| 5e327d4611b7676779e8706f | 31  | Bean Pope         | male   | beanpope@quarx.com         | +55 (839) 449-2320 |
-| 5e327d46abc4381ea5704c24 | 34  | Rosetta Burks     | female | rosettaburks@quarx.com     | +55 (867) 587-3346 |
-| 5e327d461fe8198e46fbe6df | 36  | Finley Johns      | male   | finleyjohns@quarx.com      | +55 (911) 578-3351 |
-| 5e327d46321cf15d280f2c9d | 38  | Nielsen Rutledge  | male   | nielsenrutledge@quarx.com  | +55 (948) 406-3975 |
-| 5e327d4630b2bcfe8e500c34 | 23  | Herman Colon      | male   | hermancolon@quarx.com      | +55 (861) 532-2341 |
-| 5e327d46211ace1737eef2ca | 40  | Lucinda Reilly    | female | lucindareilly@quarx.com    | +55 (984) 563-3741 |
-| 5e327d46931914f68245cbd1 | 20  | Swanson Lopez     | male   | swansonlopez@quarx.com     | +55 (977) 557-2674 |
-| 5e327d46c18553d99a42bfea | 25  | Christian Shaffer | female | christianshaffer@quarx.com | +55 (836) 589-3118 |
-|                          |
+| \_id                     | age | name             | gender | email                     | phone              |
+| ------------------------ | --- | ---------------- | ------ | ------------------------- | ------------------ |
+| 5e327d46d2bced0625350c64 | 20  | Kimberley Kinney | female | kimberleykinney@quarx.com | +55 (923) 451-3229 |
+| 5e327d4652112a31ca1cb009 | 25  | Frieda Roth      | female | friedaroth@quarx.com      | +55 (928) 580-3096 |
+| 5e327d4611b7676779e8706f | 31  | Bean Pope        | male   | beanpope@quarx.com        | +55 (839) 449-2320 |
+| ...                      | ... | ...              | ...    | ...                       | ...                |
 
 For each module tested the result obtained by converting the csv must be equal to the following structure:
 
