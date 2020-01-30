@@ -4,20 +4,35 @@
 
 | module         | execution time |
 | -------------- | -------------- |
-| csvtojsonV1.js | 8.319901 ms    |
-| csvtojsonV2.js | 13.875601 ms   |
+| csvtojsonV1.js | 46.8337 ms     |
+| csvtojsonV2.js | 9.934 ms       |
+| papaparse.js   | 2.5822 ms      |
+
+## CLI
+
+It is possible to pass arguments to the analyzer use the `--help` or`-h` flag for more details:
+
+```console
+node index.js --help
+```
+
+A very useful and important flag is the `--module` or just `-m`, it serves and is used to test each module individually:
+
+```console
+node index.js -m papaparse
+```
 
 ## Modules
 
 The comparator consists of modules.
 The modules are called by the [index.js](./index.js) file that calls the `execute` function passing the csv `data`,
-they are in the [readers](./readers/) folder and maintain the following structure:
+they are in the [modules](./modules/) folder and maintain the following structure:
 
 ```js
 module.exports = {
     execute(data, stopCallback) {
         // Your code here
-        stopCallback();
+        stopCallback(/*result*/);
     }
 };
 ```
