@@ -2,6 +2,11 @@
 
 🔥 NODE.JS - Comparative analysis of csv file readers and converters.
 
+| module         | execution time |
+| -------------- | -------------- |
+| csvtojsonV1.js | 8.319901 ms    |
+| csvtojsonV2.js | 13.875601 ms   |
+
 ## Modules
 
 The comparator consists of modules.
@@ -10,8 +15,9 @@ they are in the [readers](./readers/) folder and maintain the following structur
 
 ```js
 module.exports = {
-    execute(data) {
+    execute(data, stopCallback) {
         // Your code here
+        stopCallback();
     }
 };
 ```

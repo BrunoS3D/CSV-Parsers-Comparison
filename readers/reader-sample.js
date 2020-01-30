@@ -1,5 +1,6 @@
 module.exports = {
-    execute(data) {
+    execute(data, stopCallback) {
         // Your code here
+        stopCallback();
     }
 };
