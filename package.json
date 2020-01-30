@@ -1,0 +1,11 @@
+{
+  "name": "CSV-Readers-Comparison",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Bruno Silva <bruno3dcontato@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "csv-parse": "^4.8.5",
+    "execution-time": "^1.3.0"
+  }
+}
