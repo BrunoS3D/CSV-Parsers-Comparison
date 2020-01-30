@@ -6,15 +6,15 @@
 
 In the old test method, the csv structure was passed as a string to the converters and the time that elapsed from that conversion was used for comparison:
 
-| module                 | execution time (10 rows) | execution time (1000 rows) | execution time (10k rows) |
-| ---------------------- | ------------------------ | -------------------------- | ------------------------- |
-| csvtojsonV1.js         | 46.8337 ms               | 77.1661989 ms              | 77.1661989 ms             |
-| csvtojsonV2.js         | 9.934 ms                 | 24.36389 ms                | 24.36389 ms               |
-| papaparse.js           | 2.5822 ms                | 8.2563 ms                  | 8.2563 ms                 |
-| convert-csv-to-json.js | 0.58229 ms               | 3.556901 ms                | 3.556901 ms               |
-| csv-parser.js          | 8.917701 ms              | 35.272601 ms               | 35.272601 ms              |
-| csv-parse.js           | 13.1939 ms               | 74.1141 ms                 | 74.1141 ms                |
-| fast-csv.js            | 12.8577 ms               | 58.502801 ms               | 58.502801 ms              |
+| module                 | execution time (10 rows) | execution time (1000 rows) |
+| ---------------------- | ------------------------ | -------------------------- |
+| csvtojsonV1.js         | 46.8337 ms               | 77.1661989 ms              |
+| csvtojsonV2.js         | 9.934 ms                 | 24.36389 ms                |
+| papaparse.js           | 2.5822 ms                | 8.2563 ms                  |
+| convert-csv-to-json.js | 0.58229 ms               | 3.556901 ms                |
+| csv-parser.js          | 8.917701 ms              | 35.272601 ms               |
+| csv-parse.js           | 13.1939 ms               | 74.1141 ms                 |
+| fast-csv.js            | 12.8577 ms               | 58.502801 ms               |
 
 ### Current Test Method (CSV File Stream Reader)
 
