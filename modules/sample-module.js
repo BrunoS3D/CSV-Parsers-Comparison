@@ -1,6 +1,6 @@
 module.exports = {
-    execute(data, stopCallback) {
-        // Your code here
-        stopCallback(/*result*/);
+    name: "sample-module",
+    pipeConnector(stream) {
+        // return stream.pipe(/* stream connector */);
     }
 };

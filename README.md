@@ -2,27 +2,43 @@
 
 🔥 NODE.JS - Comparative analysis of csv converters.
 
-| module                 | execution time (10 rows) | execution time (1000 rows) |
-| ---------------------- | ------------------------ | -------------------------- |
-| csvtojsonV1.js         | 46.8337 ms               | 77.1661989 ms              |
-| csvtojsonV2.js         | 9.934 ms                 | 24.36389 ms                |
-| papaparse.js           | 2.5822 ms                | 8.2563 ms                  |
-| convert-csv-to-json.js | 0.58229 ms               | 3.556901 ms                |
-| csv-parser.js          | 8.917701 ms              | 35.272601 ms               |
-| csv-parse.js           | 13.1939 ms               | 74.1141 ms                 |
-| fast-csv.js            | 12.8577 ms               | 58.502801 ms               |
+### Old Test Method (CSV String Parse)
+
+In the old test method, the csv structure was passed as a string to the converters and the time that elapsed from that conversion was used for comparison:
+
+| module                 | execution time (10 rows) | execution time (1000 rows) | execution time (10k rows) |
+| ---------------------- | ------------------------ | -------------------------- | ------------------------- |
+| csvtojsonV1.js         | 46.8337 ms               | 77.1661989 ms              | 77.1661989 ms             |
+| csvtojsonV2.js         | 9.934 ms                 | 24.36389 ms                | 24.36389 ms               |
+| papaparse.js           | 2.5822 ms                | 8.2563 ms                  | 8.2563 ms                 |
+| convert-csv-to-json.js | 0.58229 ms               | 3.556901 ms                | 3.556901 ms               |
+| csv-parser.js          | 8.917701 ms              | 35.272601 ms               | 35.272601 ms              |
+| csv-parse.js           | 13.1939 ms               | 74.1141 ms                 | 74.1141 ms                |
+| fast-csv.js            | 12.8577 ms               | 58.502801 ms               | 58.502801 ms              |
+
+### Current Test Method (CSV File Stream Reader)
+
+In the new method, use a `createReadStream` to read a file then it is connected to the converter using the `pipe` function, the time it takes from connecting the pipe to the `end` event is used for the comparison.
+
+| module        | execution time (10 rows) | execution time (1k rows) | execution time (10k rows) |
+| ------------- | ------------------------ | ------------------------ | ------------------------- |
+| papaparse.js  | 10.886201 ms             | 22.5746 ms               | 81.1833 ms                |
+| csv-parser.js | 9.745599 ms              | 51.86 ms                 | 111.473 ms                |
+| csv-parse.js  | 13.73379 ms              | 128.088201 ms            | 202.3191 ms               |
+| fast-csv.js   | 12.9665 ms               | 57.5728 ms               | 219.8584 ms               |
+
+> Obs: _Some packages have not supported or demonstrated some type of bug and have been removed._
 
 ## Modules
 
 The comparator consists of modules.
-The modules are called by the [index.js](./index.js) file that calls the `execute` function passing the csv `data`,
 they are in the [modules](./modules/) folder and maintain the following structure:
 
 ```js
 module.exports = {
-    execute(data, stopCallback) {
-        // Your code here
-        stopCallback(/*result*/);
+    name: "sample-module",
+    pipeConnector(stream) {
+        // return stream.pipe(/* stream connector */);
     }
 };
 ```
@@ -53,7 +69,7 @@ node index.js -m fast-csv -i ./big-data.csv -o ./output.json
 
 ## Test Data
 
-The tests were based on the [sample-data.csv](./sample-data.csv) and [big-data.csv](./big-data.csv) file which maintains the following structure:
+The tests were based on the [10-rows.csv](./10-rows.csv), [1k-rows.csv](./1k-rows.csv) and [10k-rows.csv](./10k-rows.csv) file which maintains the following structure:
 
 | \_id                     | age | name             | gender | email                     | phone              |
 | ------------------------ | --- | ---------------- | ------ | ------------------------- | ------------------ |

@@ -28,42 +28,48 @@ const argv = yargs
     .alias("help", "h")
     .alias("version", "v").argv;
 
-const csv_file_path = argv.input || path.join(__dirname, "sample-data.csv");
+const csv_file_path = argv.input || path.join(__dirname, "10-rows.csv");
 const modules_folder_path = path.join(__dirname, "modules");
 
-function executeTestModule(m_module, csv_data, module_name) {
+function startModuleTest(m_module) {
+    const stream = fs.createReadStream(csv_file_path, { encoding: "utf-8" });
+
     perf.start();
-    m_module.execute(csv_data, result => {
-        const exec_time = perf.stop().time;
+    const result = [];
 
-        if (argv.debug) {
-            console.log(module_name ? `[${module_name}] Result:` : "Result:", result);
-        }
-        if (argv.output) {
-            fs.writeFile(argv.output, JSON.stringify(result), "utf8", error => {
-                if (error) throw error;
-                console.log("Output file saved in:", argv.output);
-            });
-        }
+    m_module
+        .pipeConnector(stream)
+        .on("error", error => {
+            if (error) throw error;
+        })
+        .on("data", data => {
+            result.push(data);
+        })
+        .on("end", () => {
+            const exec_time = perf.stop().time;
 
-        console.log(module_name ? `[${module_name}]:` : "Execution time:", exec_time, "ms");
-    });
+            if (argv.debug) {
+                console.log(`[${m_module.name}] Result:`, result);
+            }
+
+            if (argv.output) {
+                fs.writeFile(argv.output, JSON.stringify(result), "utf8", error => {
+                    if (error) throw error;
+                    console.log("Output file saved in:", argv.output);
+                });
+            }
+
+            console.log(`[${m_module.name}] Execution time:`, exec_time, "ms");
+        });
 }
 
-fs.readFile(csv_file_path, { encoding: "utf-8" }, function(error, data) {
-    if (error) throw error;
-
-    const csv_data = data;
-    // data || "_id,age,name,gender,email,phone\n5e327d46d2bced0625350c64,20,Kimberley Kinney,female,kimberleykinney@quarx.com,+55 (923) 451-3229";
-
-    if (argv.module) {
-        const m_module = require("./modules/" + argv.module.replace(".js", "") + ".js");
-        executeTestModule(m_module, csv_data, argv.module);
-    } else {
-        fs.readdirSync(modules_folder_path).forEach(file => {
-            if (file === "sample-module.js") return;
-            const m_module = require("./modules/" + file);
-            executeTestModule(m_module, csv_data, file);
-        });
-    }
-});
+if (argv.module) {
+    const m_module = require("./modules/" + argv.module.replace(".js", "") + ".js");
+    startModuleTest(m_module);
+} else {
+    fs.readdirSync(modules_folder_path).forEach(file => {
+        if (file === "sample-module.js") return;
+        const m_module = require("./modules/" + file);
+        startModuleTest(m_module);
+    });
+}

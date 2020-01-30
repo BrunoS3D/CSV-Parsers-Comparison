@@ -3,10 +3,12 @@
 const Papa = require("papaparse");
 
 module.exports = {
-    execute(data, stopCallback) {
-        const result = Papa.parse(data, {
-            header: true
-        }).data;
-        stopCallback(result);
+    name: "papaparse",
+    pipeConnector(stream) {
+        return stream.pipe(
+            Papa.parse(Papa.NODE_STREAM_INPUT, {
+                header: true
+            })
+        );
     }
 };
