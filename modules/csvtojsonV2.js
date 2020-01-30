@@ -1,3 +1,5 @@
+// https://www.npmjs.com/package/csvtojson
+
 const csvtojsonV2 = require("csvtojson/v2");
 
 module.exports = {

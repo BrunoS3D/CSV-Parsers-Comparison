@@ -1,3 +1,5 @@
+// https://www.npmjs.com/package/convert-csv-to-json
+
 const csvToJson = require("convert-csv-to-json/src/csvToJson");
 
 module.exports = {
