@@ -45,7 +45,7 @@ fs.readFile(csv_file_path, { encoding: "utf-8" }, function(error, data) {
         executeTestModule(m_module, csv_data, argv.module);
     } else {
         fs.readdirSync(modules_folder_path).forEach(file => {
-            if (file === "reader-sample.js") return;
+            if (file === "sample-module.js") return;
             const m_module = require("./modules/" + file);
             executeTestModule(m_module, csv_data, file);
         });

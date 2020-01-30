@@ -2,15 +2,16 @@
 
 🔥 NODE.JS - Comparative analysis of csv file readers and converters.
 
-| module         | execution time |
-| -------------- | -------------- |
-| csvtojsonV1.js | 46.8337 ms     |
-| csvtojsonV2.js | 9.934 ms       |
-| papaparse.js   | 2.5822 ms      |
+| module                 | execution time        |
+| ---------------------- | --------------------- |
+| csvtojsonV1.js         | 46.8337 ms            |
+| csvtojsonV2.js         | 9.934 ms              |
+| papaparse.js           | 2.5822 ms             |
+| convert-csv-to-json.js | 0.5822999999999999 ms |
 
 ## CLI
 
-It is possible to pass arguments to the analyzer use the `--help` or`-h` flag for more details:
+It is possible to pass arguments to the analyzer use the `--help` or `-h` flag for more details:
 
 ```console
 node index.js --help

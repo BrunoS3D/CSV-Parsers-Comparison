@@ -51,6 +51,11 @@ color-name@~1.1.4:
   resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.4.tgz#c2a09a87acbde69543de6f63fa3995c826c536a2"
   integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
 
+convert-csv-to-json@^0.0.15:
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/convert-csv-to-json/-/convert-csv-to-json-0.0.15.tgz#f0ac35129b61d857cb370e4eaf2abd4779c2c15a"
+  integrity sha512-mXpZWoSc3RXWuA50GAx/BAj+7GIWLmYCr2/IoW9L+cwwvRt6TkTY+15emUyeNInyfl5uZf+H6sQQkpKhjwJB0w==
+
 csv-parse@^4.8.5:
   version "4.8.5"
   resolved "https://registry.yarnpkg.com/csv-parse/-/csv-parse-4.8.5.tgz#32e92a0e0acedab141bd5c5a3ad6fc3316f2c72d"
